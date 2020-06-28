@@ -1,0 +1,347 @@
+﻿@{
+    var username = ViewData["username"];
+}
+@model FindTaskHelperWebApplication.Models.AddNewAd
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tasker &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="~/theme2/css/custom-bs.css">
+    <link rel="stylesheet" href="~/theme2/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/theme2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/theme2/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/theme2/fonts/line-icons/style.css">
+    <link rel="stylesheet" href="~/theme2/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/theme2/css/animate.min.css">
+    <link rel="stylesheet" href="~/theme2/css/quill.snow.css">
+
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/theme2/css/style.css">
+</head>
+<body id="top">
+
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div> <!-- .site-mobile-menu -->
+        <!-- NAVBAR -->
+        <header class="site-navbar mt-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="site-logo col-6"><a href="/Home/IndexLoggedIn">Tasker</a></div>
+
+                    <nav class="mx-auto site-navigation">
+                        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                            <li><a href="/Home/IndexLoggedIn" class="nav-link">Home</a></li>
+                            <li><a href="/Home/Profile" class="nav-link">Profile</a></li>
+                            <li><a href="/Home/MyAds/@username" class="nav-link">My Ads</a></li>
+                            <li><a href="/Home/MyTasks/@username" class="nav-link">My Tasks</a></li>
+                            <li class="d-lg-none"><a href="/Home/NewAd"><span class="mr-2">+</span> Post a Job</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                        <div class="ml-auto">
+                            <a href="/Home/NewAd" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
+                            <a href="/Home/Index" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-close2"></span>Log out</a>
+                        </div>
+                        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- HOME -->
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('/theme2/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1 class="text-white font-weight-bold">New Ad</h1>
+                        <div class="custom-breadcrumbs">
+                            <a href="/Home/IndexLoggedIn">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong>Add New Ad</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="mb-4">New Ad</h2>
+                        <form asp-action="ProcessNewAdData" asp-controller="Task" enctype="multipart/form-data" class="p-4 border rounded">
+
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="TitleField" class="text-black" for="fname">Title</label>
+                                    <input required asp-for="TitleField" type="text" id="fname" class="form-control">
+                                    <input required style="display: none" ; asp-for="TaskOwnerUsername" type="text" class="form-control" value="@username">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="DescriptionField" class="text-black" for="fname">Short Description</label>
+                                    <input required class="form-control" asp-for="DescriptionField" type="text" id="fname">
+                                </div>
+                            </div>
+
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label class="text-black" for="fname">Location</label>
+                                    <select required asp-for="Country" name="country" class="countries form-control" id="countryId">
+                                        <option value="">Select Country</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <select required asp-for="State" name="state" class="states form-control" id="stateId">
+                                        <option value="">Select State</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <select asp-for="City" name="city" class="cities form-control" id="cityId">
+                                        <option value="">Select City</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="Category" class="text-black" for="fname">Job Category</label>
+                                    <select required asp-for="Category" class="form-control">
+                                        <option selected="selected" disabled="disabled">Choose Category</option>
+                                        <option>Furniture Set Up</option>
+                                        <option>Grocery Shopping</option>
+                                        <option>Software</option>
+                                        <option>Web Design</option>
+                                        <option>Teaching</option>
+                                        <option>Baby Sitting</option>
+                                        <option>Shipping</option>
+                                        <option>Plumbing</option>
+                                        <option>Dog Walking</option>
+                                        <option>Gardening</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="OtherCategory" class="text-black" for="fname">If you said "Other", can you specify the job catergory</label>
+                                    <input asp-for="OtherCategory" type="text" id="ftype" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="AddressField" class="text-black" for="fname">Address</label>
+                                    <input required asp-for="AddressField" type="text" id="fname" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="PaymentAmountField" class="text-black" for="fname">Payment Amount</label>
+                                    <input required asp-for="PaymentAmountField" type="number" id="fname" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="Currency" class="text-black" for="fname">Payment Currency</label>
+                                    <select required asp-for="Currency" class="form-control">
+                                        <option selected="selected" disabled="disabled">Choose Currency</option>
+                                        <option value="TL">Turkish Lira</option>
+                                        <option value="USD">United States Dollars</option>
+                                        <option value="EUR">Euro</option>
+                                        <option value="GBP">United Kingdom Pounds</option>
+                                        <option value="DZD">Algeria Dinars</option>
+                                        <option value="ARP">Argentina Pesos</option>
+                                        <option value="AUD">Australia Dollars</option>
+                                        <option value="ATS">Austria Schillings</option>
+                                        <option value="BSD">Bahamas Dollars</option>
+                                        <option value="BBD">Barbados Dollars</option>
+                                        <option value="BEF">Belgium Francs</option>
+                                        <option value="BMD">Bermuda Dollars</option>
+                                        <option value="BRR">Brazil Real</option>
+                                        <option value="BGL">Bulgaria Lev</option>
+                                        <option value="CAD">Canada Dollars</option>
+                                        <option value="CLP">Chile Pesos</option>
+                                        <option value="CNY">China Yuan Renmimbi</option>
+                                        <option value="CYP">Cyprus Pounds</option>
+                                        <option value="CSK">Czech Republic Koruna</option>
+                                        <option value="DKK">Denmark Kroner</option>
+                                        <option value="NLG">Dutch Guilders</option>
+                                        <option value="XCD">Eastern Caribbean Dollars</option>
+                                        <option value="EGP">Egypt Pounds</option>
+                                        <option value="FJD">Fiji Dollars</option>
+                                        <option value="FIM">Finland Markka</option>
+                                        <option value="FRF">France Francs</option>
+                                        <option value="DEM">Germany Deutsche Marks</option>
+                                        <option value="XAU">Gold Ounces</option>
+                                        <option value="GRD">Greece Drachmas</option>
+                                        <option value="HKD">Hong Kong Dollars</option>
+                                        <option value="HUF">Hungary Forint</option>
+                                        <option value="ISK">Iceland Krona</option>
+                                        <option value="INR">India Rupees</option>
+                                        <option value="IDR">Indonesia Rupiah</option>
+                                        <option value="IEP">Ireland Punt</option>
+                                        <option value="ILS">Israel New Shekels</option>
+                                        <option value="ITL">Italy Lira</option>
+                                        <option value="JMD">Jamaica Dollars</option>
+                                        <option value="JPY">Japan Yen</option>
+                                        <option value="JOD">Jordan Dinar</option>
+                                        <option value="KRW">Korea (South) Won</option>
+                                        <option value="LBP">Lebanon Pounds</option>
+                                        <option value="LUF">Luxembourg Francs</option>
+                                        <option value="MYR">Malaysia Ringgit</option>
+                                        <option value="MXP">Mexico Pesos</option>
+                                        <option value="NLG">Netherlands Guilders</option>
+                                        <option value="NZD">New Zealand Dollars</option>
+                                        <option value="NOK">Norway Kroner</option>
+                                        <option value="PKR">Pakistan Rupees</option>
+                                        <option value="XPD">Palladium Ounces</option>
+                                        <option value="PHP">Philippines Pesos</option>
+                                        <option value="XPT">Platinum Ounces</option>
+                                        <option value="PLZ">Poland Zloty</option>
+                                        <option value="PTE">Portugal Escudo</option>
+                                        <option value="ROL">Romania Leu</option>
+                                        <option value="RUR">Russia Rubles</option>
+                                        <option value="SAR">Saudi Arabia Riyal</option>
+                                        <option value="XAG">Silver Ounces</option>
+                                        <option value="SGD">Singapore Dollars</option>
+                                        <option value="SKK">Slovakia Koruna</option>
+                                        <option value="ZAR">South Africa Rand</option>
+                                        <option value="KRW">South Korea Won</option>
+                                        <option value="ESP">Spain Pesetas</option>
+                                        <option value="XDR">Special Drawing Right (IMF)</option>
+                                        <option value="SDD">Sudan Dinar</option>
+                                        <option value="SEK">Sweden Krona</option>
+                                        <option value="CHF">Switzerland Francs</option>
+                                        <option value="TWD">Taiwan Dollars</option>
+                                        <option value="THB">Thailand Baht</option>
+                                        <option value="TTD">Trinidad and Tobago Dollars</option>
+                                        <option value="VEB">Venezuela Bolivar</option>
+                                        <option value="ZMK">Zambia Kwacha</option>
+                                        <option value="EUR">Euro</option>
+                                        <option value="XCD">Eastern Caribbean Dollars</option>
+                                        <option value="XDR">Special Drawing Right (IMF)</option>
+                                        <option value="XAG">Silver Ounces</option>
+                                        <option value="XAU">Gold Ounces</option>
+                                        <option value="XPD">Palladium Ounces</option>
+                                        <option value="XPT">Platinum Ounces</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" value="Save" class="btn px-4 btn-primary text-white">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="col-lg-3">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+
+            <a href="#top" class="smoothscroll scroll-top">
+                <span class="icon-keyboard_arrow_up"></span>
+            </a>
+
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <h3>Support</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="/Home/Privacy">Privacy</a></li>
+                            <li><a href="/Home/TermsOfService">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <h3>Contact Us</h3>
+                        <div class="footer-social">
+                            <a href="#"><span class="icon-facebook"></span></a>
+                            <a href="#"><span class="icon-twitter"></span></a>
+                            <a href="#"><span class="icon-instagram"></span></a>
+                            <a href="#"><span class="icon-linkedin"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-12">
+                        <p class="copyright">
+                            <small>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="~/theme2/js/jquery.min.js"></script>
+    <script src="~/theme2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/theme2/js/isotope.pkgd.min.js"></script>
+    <script src="~/theme2/js/stickyfill.min.js"></script>
+    <script src="~/theme2/js/jquery.fancybox.min.js"></script>
+    <script src="~/theme2/js/jquery.easing.1.3.js"></script>
+
+    <script src="~/theme2/js/jquery.waypoints.min.js"></script>
+    <script src="~/theme2/js/jquery.animateNumber.min.js"></script>
+    <script src="~/theme2/js/owl.carousel.min.js"></script>
+    <script src="~/theme2/js/quill.min.js"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <script src="~/theme2/js/bootstrap-select.min.js"></script>
+
+    <script src="~/theme2/js/custom.js"></script>
+
+
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
+
+
+
+

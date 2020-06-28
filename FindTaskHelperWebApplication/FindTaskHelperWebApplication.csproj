@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Moq" Version="4.14.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\theme2\images\apps.png" />
+    <None Include="wwwroot\theme2\images\hero_1.jpg" />
+    <None Include="wwwroot\theme2\images\img_1.jpg" />
+    <None Include="wwwroot\theme2\images\img_2.jpg" />
+    <None Include="wwwroot\theme2\images\job_logo_1.jpg" />
+    <None Include="wwwroot\theme2\images\job_logo_2.jpg" />
+    <None Include="wwwroot\theme2\images\job_logo_3.jpg" />
+    <None Include="wwwroot\theme2\images\job_logo_4.jpg" />
+    <None Include="wwwroot\theme2\images\job_logo_5.jpg" />
+    <None Include="wwwroot\theme2\images\job_single_img_1.jpg" />
+    <None Include="wwwroot\theme2\images\logo_airbnb.svg" />
+    <None Include="wwwroot\theme2\images\logo_apple.svg" />
+    <None Include="wwwroot\theme2\images\logo_mailchimp.svg" />
+    <None Include="wwwroot\theme2\images\logo_paypal.svg" />
+    <None Include="wwwroot\theme2\images\logo_sony.svg" />
+    <None Include="wwwroot\theme2\images\logo_stripe.svg" />
+    <None Include="wwwroot\theme2\images\logo_tinder.svg" />
+    <None Include="wwwroot\theme2\images\logo_visa.svg" />
+    <None Include="wwwroot\theme2\images\person_1.jpg" />
+    <None Include="wwwroot\theme2\images\person_2.jpg" />
+    <None Include="wwwroot\theme2\images\person_3.jpg" />
+    <None Include="wwwroot\theme2\images\person_4.jpg" />
+    <None Include="wwwroot\theme2\images\person_5.jpg" />
+    <None Include="wwwroot\theme2\images\person_6.jpg" />
+    <None Include="wwwroot\theme2\images\person_transparent.png" />
+    <None Include="wwwroot\theme2\images\person_transparent_2.png" />
+    <None Include="wwwroot\theme2\images\quote.png" />
+    <None Include="wwwroot\theme2\images\sq_img_1.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_10.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_11.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_12.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_13.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_2.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_3.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_4.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_5.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_6.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_7.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_8.jpg" />
+    <None Include="wwwroot\theme2\images\sq_img_9.jpg" />
+  </ItemGroup>
+
+</Project>

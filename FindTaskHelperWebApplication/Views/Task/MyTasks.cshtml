@@ -1,0 +1,400 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model FindTaskHelperWebApplication.Models.UpdateAdd
+@{
+    var tasks = ViewData["tasks"];
+    var username = ViewData["username"];
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tasker &mdash; Website Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <link rel="stylesheet" href="~/theme2/css/custom-bs.css">
+    <link rel="stylesheet" href="~/theme2/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="~/theme2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/theme2/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/theme2/fonts/line-icons/style.css">
+    <link rel="stylesheet" href="~/theme2/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/theme2/css/animate.min.css">
+    <link rel="stylesheet" href="~/theme2/css/quill.snow.css">
+
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="~/theme2/css/style.css">
+</head>
+<body id="top">
+
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+
+    <div class="site-wrap">
+        <div class="site-mobile-menu site-navbar-target">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div> <!-- .site-mobile-menu -->
+        <!-- NAVBAR -->
+        <header class="site-navbar mt-3">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="site-logo col-6"><a href="/Home/IndexLoggedIn">Tasker</a></div>
+
+                    <nav class="mx-auto site-navigation">
+                        <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
+                            <li><a href="/Home/IndexLoggedIn" class="nav-link">Home</a></li>
+                            <li><a href="/Home/Profile" class="nav-link">Profile</a></li>
+                            <li><a href="/Home/MyAds/@username" class="nav-link">My Ads</a></li>
+                            <li><a href="/Home/MyTasks/@username" class="nav-link">My Tasks</a></li>
+                            <li class="d-lg-none"><a href="/Home/NewAd"><span class="mr-2">+</span> Post a Job</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
+                        <div class="ml-auto">
+                            <a href="/Home/NewAd" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a>
+                            <a href="/Home/Index" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-close2"></span>Log out</a>
+                        </div>
+                        <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- HOME -->
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('/theme2/images/hero_1.jpg');" id="home-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <h1 class="text-white font-weight-bold">My Tasks</h1>
+                        <div class="custom-breadcrumbs">
+                            <a href="/Home/IndexLoggedIn">Home</a> <span class="mx-2 slash">/</span>
+                            <span class="text-white"><strong>My Tasks</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="site-section">
+            <div class="container">
+                <ul class="job-listings mb-5">
+                    @foreach (var task in (List<Tuple<FindTaskHelperWebApplication.Models.Task, bool>>)tasks)
+                    {
+                        @if (task != null)
+                        {
+                            <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+                                <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                        <h2>@task.Item1.Title</h2>
+                                        <strong>@task.Item1.Description</strong>
+                                        @if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Grocery Shopping"))
+                                        {
+                                            <span class="badge badge-warning">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Furniture Set Up"))
+                                        {
+                                            <span class="badge badge-success">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Software"))
+                                        {
+                                            <span class="badge badge-secondary">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Web Design"))
+                                        {
+                                            <span class="badge badge-primary">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Teaching"))
+                                        {
+                                            <span class="badge badge-pill">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Baby Sitting"))
+                                        {
+                                            <span class="badge badge-primary">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Shipping"))
+                                        {
+                                            <span class="badge badge-info">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Plumbing"))
+                                        {
+                                            <span class="badge badge-dark">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Dog Walking"))
+                                        {
+                                            <span class="badge badge-danger">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null && task.Item1.JobCategory.Equals("Gardening"))
+                                        {
+                                            <span class="badge badge-warning">@task.Item1.JobCategory</span>
+                                        }
+                                        else if (task.Item1.JobCategory != null)
+                                        {
+                                            <span class="badge badge-dark">@task.Item1.JobCategory</span>
+                                        }
+
+                                    </div>
+                                    <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+                                        @if (!task.Item1.IsCompleted)
+                                        {
+                                            <input data-toggle="modal" data-target="#markAsCompletedModal" type="submit" value="Mark As Completed" id="completed @task.Item1.TaskID" onclick="markFunction(this.id)" data-id="@task.Item1.TaskID" data-title="@task.Item1.Title" data-owner="@task.Item1.TaskOwnerUsername" class="btn px-4 btn-primary text-white">
+                                            <input style="background-color:red !important; border-color:red; " data-toggle="modal" data-target="#confirmModal" type="submit" value="Quit From Task" id="quit @task.Item1.TaskID" data-id="@task.Item1.TaskID" onclick="quitFunction(this.id)" class="btn px-4 btn-primary text-white">
+                                        }
+                                        else if(!task.Item2)
+                                        {
+                                            <input id="rate @task.Item1.TaskOwnerUsername" data-toggle="modal" data-task-id="@task.Item1.TaskID" data-target="#ratingModal" data-owner="@task.Item1.TaskOwnerUsername" onclick="rate(this.id)" type="submit" value="Rate Task Owner" class="btn px-4 btn-primary text-white">
+                                        }
+                                    </div>
+                                    <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+                                        <span class="icon-room"></span> @task.Item1.Address, @task.Item1.Location
+                                    </div>
+                                    <div class="job-listing-meta">
+                                        <span class="badge badge-dark">@task.Item1.PaymentAmount</span>
+                                        @if (task.Item1.IsCompleted)
+                                        {
+                                            <span class="badge badge-success">COMPLETED</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge badge-danger">WAITING</span>
+                                        }
+                                    </div>
+                                </div>
+
+                            </li>
+                        }
+                    }
+
+
+
+                </ul>
+
+            </div>
+        </section>
+
+        <footer class="site-footer">
+
+            <a href="#top" class="smoothscroll scroll-top">
+                <span class="icon-keyboard_arrow_up"></span>
+            </a>
+
+            <div class="container">
+                <div class="row mb-5">
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <h3>Support</h3>
+                        <ul class="list-unstyled">
+                            <li><a href="/Home/Privacy">Privacy</a></li>
+                            <li><a href="/Home/TermsOfService">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                        <h3>Contact Us</h3>
+                        <div class="footer-social">
+                            <a href="#"><span class="icon-facebook"></span></a>
+                            <a href="#"><span class="icon-twitter"></span></a>
+                            <a href="#"><span class="icon-instagram"></span></a>
+                            <a href="#"><span class="icon-linkedin"></span></a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-4 mb-md-0">
+                    </div>
+
+                </div>
+
+                <div class="row text-center">
+                    <div class="col-12">
+                        <p class="copyright">
+                            <small>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- Rating Modal-->
+    <div class="modal fade" id="ratingModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Rate Task Owner</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="RateTaskOwner" asp-controller="UpdateAdd" enctype="multipart/form-data" class="p-4 border rounded">
+
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <div class="btn-group" style="width:100%">
+                                        <input style="background-color: red; width: 20%;" asp-for="Rate" class="form-control input-circle" type="submit" value="1">
+                                        <input style="background-color: orange;  width: 20%;" asp-for="Rate" class="form-control input-circle" type="submit" value="2">
+                                        <input style="background-color: yellow; width: 20%;" asp-for="Rate" class="form-control input-circle" type="submit" value="3">
+                                        <input style="background-color: aquamarine; width: 20%;" asp-for="Rate" class="form-control input-circle" type="submit" value="4">
+                                        <input style="background-color: #89ba16; width: 20%;" asp-for="Rate" class="form-control input-circle" type="submit" value="5">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label asp-for="TaskOwner" class="text-black" for="fname">1 being the worst rating and 5 the best.</label>
+                                    <input asp-for="TaskOwner" style="display: none;" type="text" class="form-control input-circle" id="rate-task-owner">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input asp-for="Tasker" style="display: none;" type="text" class="form-control input-circle" value="@username">
+                                    <input asp-for="TaskIdField" style="display: none;" type="text" class="form-control input-circle" id="rated-task-id">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" value="Submit" class="btn px-4 btn-primary text-white">
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--markCompleted Modal-->
+    <div class="modal fade" id="markAsCompletedModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="MarkAsCompleted" asp-controller="UpdateAdd" enctype="multipart/form-data" class="p-4 border rounded">
+
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="TaskIdField" class="text-black" for="fname">The owner will take a mail about the status of the task.Item1. Do you confirm that the task is completed?</label>
+                                    <input asp-for="TaskIdField" style="display: none;" type="text" class="form-control input-circle" id="id-for-confirm">
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <input asp-for="Tasker" style="display: none;" type="text" class="form-control input-circle" value="@username">
+                                    <input asp-for="TaskOwner" style="display: none;" type="text" class="form-control input-circle" id="id-for-owner">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input type="submit" value="YES" class="btn px-4 btn-primary text-white">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Confirm Modal-->
+    <div class="modal fade" id="confirmModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Quit Task</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-action="QuitTask" asp-controller="UpdateAdd" enctype="multipart/form-data" class="p-4 border rounded">
+
+                            <div class="row form-group mb-4">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label asp-for="TaskIdField" class="text-black" for="fname">Are you sure to quit from this task?</label>
+                                    <input asp-for="TaskIdField" style="display: none;" type="text" class="form-control input-circle" id="id-for-quit">
+                                </div>
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <input asp-for="Tasker" style="display: none;" type="text" class="form-control input-circle" value="@username">
+                                </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <input style="background-color: red; border-color: red;" type="submit" value="QUIT" class="btn px-4 btn-primary text-white">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function quitFunction(click_id) {
+            var button = document.getElementById(click_id);
+            document.getElementById("id-for-quit").value = button.getAttribute("data-id");
+        }
+        function markFunction(click_id) {
+            var button = document.getElementById(click_id);
+            document.getElementById("id-for-confirm").value = button.getAttribute("data-id");
+            document.getElementById("id-for-owner").value = button.getAttribute("data-owner");
+        }
+        function rate(click_id) {
+            var button = document.getElementById(click_id);
+            document.getElementById("rate-task-owner").value = button.getAttribute("data-owner");
+            document.getElementById("rated-task-id").value = button.getAttribute("data-task-id");
+        }
+    </script>
+    <!-- SCRIPTS -->
+    <script src="~/theme2/js/jquery.min.js"></script>
+    <script src="~/theme2/js/bootstrap.bundle.min.js"></script>
+    <script src="~/theme2/js/isotope.pkgd.min.js"></script>
+    <script src="~/theme2/js/stickyfill.min.js"></script>
+    <script src="~/theme2/js/jquery.fancybox.min.js"></script>
+    <script src="~/theme2/js/jquery.easing.1.3.js"></script>
+
+    <script src="~/theme2/js/jquery.waypoints.min.js"></script>
+    <script src="~/theme2/js/jquery.animateNumber.min.js"></script>
+    <script src="~/theme2/js/owl.carousel.min.js"></script>
+    <script src="~/theme2/js/quill.min.js"></script>
+
+
+    <script src="~/theme2/js/bootstrap-select.min.js"></script>
+
+    <script src="~/theme2/js/custom.js"></script>
+
+
+    <!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>
+
